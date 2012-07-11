@@ -10,15 +10,14 @@
     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-
-  <bean id="bookService" class="bookorder.BookService">
-    <constructor-arg>
-      <list>
-        <bean id="amazon" class="bookorder.Amazon"/>
-        <bean id="barnesandnoble" class="bookorder.BarnesAndNoble"/>
-        <bean id="ebooks" class="bookorder.EBooks"/>
-        <bean id="borders" class="bookorder.Borders"/>
-      </list>
-    </constructor-arg>
+  <bean id="accountService" class="bank.service.AccountService">
+    <constructor-arg index="0" ref="accountDAO" />
+    <constructor-arg index="1" ref="currencyConverter" />
+    <constructor-arg index="2" ref="jMSSender" />
+    <constructor-arg index="3" ref="logger" />
   </bean>
+  <bean id="accountDAO" class="bank.dao.AccountDAO"/>
+  <bean id="currencyConverter" class="bank.service.CurrencyConverter"/>
+  <bean id="jMSSender" class="bank.jms.JMSSender"/>
+  <bean id="logger" class="bank.logging.Logger"/>
 </beans>

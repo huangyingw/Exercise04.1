@@ -17,12 +17,23 @@ public class AccountService implements IAccountService {
 	private IJMSSender jmsSender;
 	private ILogger logger;
 
-	public AccountService() {
-		accountDAO = new AccountDAO();
-		currencyConverter = new CurrencyConverter();
-		jmsSender = new JMSSender();
-		logger = new Logger();
+	// public AccountService() {
+	// accountDAO = new AccountDAO();
+	// currencyConverter = new CurrencyConverter();
+	// jmsSender = new JMSSender();
+	// logger = new Logger();
+	// }
+
+	public AccountService(AccountDAO accountDAO,
+			CurrencyConverter currencyConverter, JMSSender jmsSender,
+			Logger logger) {
+		this.accountDAO = accountDAO;
+		this.currencyConverter = currencyConverter;
+		this.jmsSender = jmsSender;
+		this.logger = logger;
 	}
+
+	// public AccountService(List<Object> suppliers)
 
 	public Account createAccount(long accountNumber, String customerName) {
 		Account account = new Account(accountNumber);

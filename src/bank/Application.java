@@ -2,15 +2,22 @@ package bank;
 
 import java.util.Collection;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import bank.domain.Account;
 import bank.domain.AccountEntry;
 import bank.domain.Customer;
-import bank.service.AccountService;
 import bank.service.IAccountService;
 
 public class Application {
 	public static void main(String[] args) {
-		IAccountService accountService = new AccountService();
+		// IAccountService accountService = new AccountService();
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"springconfig.xml");
+		IAccountService accountService = context.getBean("accountService",
+				IAccountService.class);
+		// accountService.addAccount("1543", new Customer());
 		// create 2 accounts;
 		accountService.createAccount(1263862, "Frank Brown");
 		accountService.createAccount(4253892, "John Doe");
@@ -46,5 +53,4 @@ public class Application {
 					account.getBalance());
 		}
 	}
-
 }
